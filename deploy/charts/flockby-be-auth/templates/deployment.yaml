@@ -1,0 +1,23 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  revisionHistoryLimit: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }}
+    spec:
+      containers:
+      - name: app
+        image: gcr.io/flockby/flockby-auth:0.9.24
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.app.port }}
+          protocol: TCP

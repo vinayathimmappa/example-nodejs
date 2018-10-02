@@ -1,0 +1,13 @@
+---
+ingress:
+  name: flockby-ingress
+
+domainName: auth.flockby.co
+ingressClass: nginx
+certIssuer: letsencrypt-flockby-prod
+certSecret: flockby-auth-crt
+
+app:
+  name: flockby-be-auth
+  port: 8001
+  httpPort: 80
